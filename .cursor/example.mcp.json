@@ -1,0 +1,96 @@
+{
+  "mcpServers": {
+    "mcp-atlassian": {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "--net=host",
+          "-e",
+          "CONFLUENCE_URL=${CONFLUENCE_URL}",
+          "-e",
+          "CONFLUENCE_USERNAME=${CONFLUENCE_USERNAME}",
+          "-e",
+          "CONFLUENCE_API_TOKEN=${CONFLUENCE_API_TOKEN}",
+          "ghcr.io/sooperset/mcp-atlassian:latest"
+        ],
+        "alwaysAllow": [
+          "confluence_get_page_children",
+          "confluence_get_comments",
+          "confluence_get_labels",
+          "confluence_get_page",
+          "confluence_add_comment"
+        ]
+      },
+      "github": {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          "GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}",
+          "ghcr.io/github/github-mcp-server:latest"
+        ],
+        "alwaysAllow": [
+          "add_issue_comment",
+          "add_pull_request_review_comment_to_pending_review",
+          "create_branch",
+          "create_issue",
+          "create_pending_pull_request_review",
+          "create_pull_request",
+          "get_code_scanning_alert",
+          "get_commit",
+          "get_file_contents",
+          "get_issue",
+          "get_issue_comments",
+          "get_me",
+          "get_notification_details",
+          "get_pull_request",
+          "get_pull_request_comments",
+          "get_pull_request_diff",
+          "get_pull_request_files",
+          "get_pull_request_reviews",
+          "get_pull_request_status",
+          "get_secret_scanning_alert",
+          "get_tag",
+          "list_branches",
+          "list_code_scanning_alerts",
+          "list_commits",
+          "list_issues",
+          "list_notifications",
+          "list_pull_requests",
+          "list_secret_scanning_alerts",
+          "list_tags",
+          "search_code",
+          "search_issues",
+          "search_repositories",
+          "search_users",
+          "update_issue",
+          "update_pull_request",
+          "update_pull_request_branch"
+        ]
+      },
+      "mcp-slack": {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          "SLACK_TEAM_ID",
+          "-e",
+          "SLACK_CHANNEL_IDS",
+          "-e",
+          "SLACK_BOT_TOKEN",
+          "mcp/slack"
+        ],
+        "env": {
+          "SLACK_TEAM_ID": "",
+          "SLACK_CHANNEL_IDS": "",
+          "SLACK_BOT_TOKEN": ""
+        }
+      }
+    }
+  }
